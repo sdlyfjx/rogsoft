@@ -126,8 +126,10 @@
 
         .routerhook_btn {
             border: 1px solid #222;
-            background: linear-gradient(to bottom, #003333 0%, #000000 100%); /* W3C */
-            background: linear-gradient(to bottom, #91071f 0%, #700618 100%); /* W3C rogcss */
+            background: linear-gradient(to bottom, #003333 0%, #000000 100%);
+            /* W3C */
+            background: linear-gradient(to bottom, #91071f 0%, #700618 100%);
+            /* W3C rogcss */
             font-size: 10pt;
             color: #fff;
             padding: 5px 5px;
@@ -137,8 +139,10 @@
 
         .routerhook_btn:hover {
             border: 1px solid #222;
-            background: linear-gradient(to bottom, #27c9c9 0%, #279fd9 100%); /* W3C */
-            background: linear-gradient(to bottom, #cf0a2c 0%, #91071f 100%); /* W3C rogcss */
+            background: linear-gradient(to bottom, #27c9c9 0%, #279fd9 100%);
+            /* W3C */
+            background: linear-gradient(to bottom, #cf0a2c 0%, #91071f 100%);
+            /* W3C rogcss */
             font-size: 10pt;
             color: #fff;
             padding: 5px 5px;
@@ -154,8 +158,10 @@
             margin-top: 5px;
             color: #FFFFFF;
             background: #475A5F;
-            background: transparent; /* W3C rogcss */
-            border: 1px solid #91071f; /* W3C rogcss */
+            background: transparent;
+            /* W3C rogcss */
+            border: 1px solid #91071f;
+            /* W3C rogcss */
         }
 
         #routerhook_trigger_dhcp_white {
@@ -166,8 +172,10 @@
             margin-top: 5px;
             color: #FFFFFF;
             background: #475A5F;
-            background: transparent; /* W3C rogcss */
-            border: 1px solid #91071f; /* W3C rogcss */
+            background: transparent;
+            /* W3C rogcss */
+            border: 1px solid #91071f;
+            /* W3C rogcss */
         }
 
         input[type=button]:focus {
@@ -356,7 +364,8 @@
                 "routerhook_sm_5g1",
                 "routerhook_sm_bwlist_en",
                 "routerhook_sm_bwlist_or",
-                "routerhook_sm_bwlist_and"
+                "routerhook_sm_bwlist_and",
+                "routerhook_sm_bwlist_all"
             ];
             var params_base64 = ["routerhook_config_name", "routerhook_check_custom", "routerhook_trigger_dhcp_white",
                 "routerhook_sm_bwlist"
@@ -1461,12 +1470,15 @@
                                                 </tr>
                                                 <tr>
                                                     <th width="20%">
-                                                        在线状态（设备名：rh_dev_[mac地址]）<br><i>列表中每条mac对应一个设备</i><br><i>消息中设备名mac不含冒号</i><br><i>聚合设备开启后会多一个名为rh_dev的设备</i>
+                                                        在线状态（设备名：rh_dev_[mac地址]）<br><i>消息中设备名mac不含冒号</i><br><i>开启所有设备后，列表中每个设备都推送一次</i><br><i>聚合设备开启后会多一个名为rh_dev的设备</i>
                                                     </th>
                                                     <td>
                                                         <label><input type="checkbox" id="routerhook_sm_bwlist_en"
                                                                 name="routerhook_sm_bwlist_en"
-                                                                onclick="oncheckclick(this);">启用</label> （ 聚合设备：
+                                                                onclick="oncheckclick(this);">启用</label>
+                                                        <label><input type="checkbox" id="routerhook_sm_bwlist_all"
+                                                                name="routerhook_sm_bwlist_all"
+                                                                onclick="oncheckclick(this);">所有设备</label> （ 聚合设备：
                                                         <label><input type="checkbox" id="routerhook_sm_bwlist_or"
                                                                 name="routerhook_sm_bwlist_or"
                                                                 onclick="oncheckclick(this);">或模式</label>
