@@ -25,10 +25,10 @@ exports.main_handler = async (event, context) => {
     // 可以根据path做一些自定义路由的处理，这里不过多演示，只有当serverless.yaml中指定了header或者path的参数后，pathParameters或者headerParameters中才会有解析的参数
 
     // 验证basicAuth内容和路由器上RouterHook插件的Header中配置的basicAuth内容是否一致
-    if (basicAuth !== 'woshiyigexiaokeai') return '请不要访问我的服务！'
+    if (basicAuth !== 'woshiyigexiaokeai') return 'success! 请不要访问我的服务！小心我挖死你！'
 
     // 验证通过，则处理消息内容，具体请参看RouterHook消息体说明文档：
-    if (!body || body.length < 1) return '你好，你发了个啥？'
+    if (!body || body.length < 1) return 'success! 你好，你发了个啥？'
     const jsonBody = JSON.parse(body)
     switch (jsonBody.msgTYPE) {
         case 'ifUP': // 网络重拨上线消息：https://github.com/sdlyfjx/rogsoft/tree/master/routerhook#%E7%BD%91%E7%BB%9C%E9%87%8D%E6%8B%A8%E4%B8%8A%E7%BA%BF%E6%B6%88%E6%81%AF%E6%A0%BC%E5%BC%8F%E9%80%82%E9%85%8Difttt
@@ -50,7 +50,7 @@ exports.main_handler = async (event, context) => {
                 friendly_name
             }
         } = jsonBody
-        if (!friendly_name || !state) return 'NULL VALUES'
+        if (!friendly_name || !state) return 'success! NULL VALUES'
         const filename = `${CFS_BASE_PATH}${friendly_name.replace(/\W/g,'_')}.dev` // 已经将frindly_name中所有的非字符替换为下划线
         let old_state, now_state = `${state} ${unit_of_measurement}`
         if (fs.existsSync(filename))
@@ -60,15 +60,17 @@ exports.main_handler = async (event, context) => {
         if (old_state !== now_state) {
             // 状态发生变更，则进行消息推送通知等处理，这里以ios上的ios上的bark为例：
             const msgContent = `您的设备${friendly_name}的状态已变更为：${state}`
+            // 如果你用bark推送，则启用下面一行代码
             await sendToBark(msgContent)
+            // 如果你用企业微信机器人推送，则启用下面一行代码
             await sendToWechatBot(msgContent)
-            return 'Notify OK'
+            return 'success! Notify OK'
         } else {
             console.log('状态无变更，忽略通知')
         }
     }
 
-    return body
+    return 'success'
 };
 
 
@@ -78,7 +80,7 @@ exports.main_handler = async (event, context) => {
  */
 async function sendToBark(content) {
     const yourBarkID = 'XXX'
-    return await AXIOS.get(`https://api.day.app/${yourBarkID}/${content}`).catch(err => console.log(err))
+    return await AXIOS.get(`https://api.day.app/${yourBarkID}/${encodeURIComponent(content)}`).catch(err => console.log(err))
 }
 
 

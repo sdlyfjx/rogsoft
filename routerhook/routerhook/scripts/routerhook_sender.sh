@@ -33,7 +33,7 @@ for nu in ${url_nu}; do
     fi
     temp=$(dbus get routerhook_config_sckey_${nu})
     url=$(replace_var $temp)
-    reqstr="curl ${header} -X POST -d '"${routerhook_send_content}"' ${url}"
+    reqstr="curl ${header} -X POST -d '"${routerhook_send_content}"' '${url}'"
     result=$(eval ${reqstr})
     if [[ -n "$(echo $result | grep "success")" ]]; then
         [ "${routerhook_info_logger}" == "1" ] && logger "[routerhook]: ${msg_type}推送到 URL No.${nu} 成功！"

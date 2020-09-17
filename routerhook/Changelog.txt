@@ -1,5 +1,9 @@
 Koolshare hnd/axhnd router software center routerhook Changelog
 ===========================================
+1.4
+   - fix 修复url中多个参数出现截断问题
+   - feat 设备消息中新增是否独立推送单个设备的开关功能
+
 1.3
    - fix 修复免打扰时间的时区异常问题
 
